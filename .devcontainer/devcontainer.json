@@ -1,0 +1,68 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.194.3/containers/docker-in-docker
+{
+	"name": "Docker in Docker",
+	"dockerFile": "Dockerfile",
+	"build": {
+		"args": {
+			"USERNAME": "dalexander",
+			"UPGRADE_PACKAGES": "true",
+			"JAVA_VERSION": "11",
+			"SDKMAN_DIR": "/root/.sdkman/bin/sdkman-init.sh",
+			// Update the VARIANT arg to pick a Java version: 11, 16
+			"VARIANT": "11",
+			// Options
+			"INSTALL_MAVEN": "true",
+			"INSTALL_GRADLE": "false",
+			"NODE_VERSION": "none",
+			"APP_DIR": "/home/dalexander/Queen8/",
+			"GIT_REPO": "",
+			"GIT_BRANCH": "master",
+			"MAVEN_VERSION": "3.8.2",
+			"GIT_USER": "dellius-alexander",
+			"GIT_EMAIL": "dellius.alexander@gmail.com",
+			"INSTALL_ZSH": "true",
+			"USER_UID": "1000",
+			"USER_GID": "1000",
+			"TZ": "America/New_York"
+		}
+	},
+	"runArgs": ["--init", "--privileged"],
+	"mounts": ["source=dind-var-lib-docker,target=/var/lib/docker,type=volume"],
+	"overrideCommand": false,
+	
+	// Set *default* container specific settings.json values on container create.
+	"settings": {},
+	// Add the IDs of extensions you want installed when the container is created.
+	"extensions": [
+		"ms-azuretools.vscode-docker",
+		"vscjava.vscode-java-pack",
+		"redhat.java",
+		"redhat.vscode-commons",
+		"davidanson.vscode-markdownlint",
+		"dotjoshjohnson.xml",
+		"vscjava.vscode-maven",
+		"redhat.fabric8-analytics",
+		"sohibe.java-generate-setters-getters",
+		// "magicstack.magicpython",
+		// "ms-python.vscode-pylance",
+		// "ms-python.python",
+		// "donjayamanne.python-extension-pack",
+		"rogalmic.bash-debug"
+	],
+	
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	//  "forwardPorts": [3000],
+
+	// Comment out connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
+	"remoteUser": "dalexander",
+
+	// Use 'postCreateCommand' to run commands after the container is created.
+	"postCreateCommand": "docker --version && echo '' && docker info && echo '' && java -version && echo '' && javac -version && echo '' && mvn -v && sleep 3 && echo '' && ls -lia ${APP_DIR}  && sleep 3 && clear && /usr/bin/zsh",
+
+	// Workspace folder in container
+	"workspaceFolder": "/home/dalexander/Queen8/",
+
+	// Local workspace mount
+	"workspaceMount": "source=${localWorkspaceFolder}/,target=/home/dalexander/Queen8,type=bind,consistency=cached",
+}

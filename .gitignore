@@ -1,0 +1,11 @@
+data/**
+target/**
+test/**
+.vscode/**
+**/packages/**
+.settings
+**.log
+.notes
+.scratch
+.DS_Store
+!.devcontainer
