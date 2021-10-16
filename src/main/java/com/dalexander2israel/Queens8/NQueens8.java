@@ -2,7 +2,6 @@ package com.dalexander2israel.Queens8;
 import java.util.Random;
 
 //imports
-import org.slf4j.*;
 ////////////////////////////////////////////////////////////////
 /** 
  * @author Dellius Alexander
